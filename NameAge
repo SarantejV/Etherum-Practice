@@ -1,0 +1,19 @@
+ pragma solidity ^0.6.6;
+ 
+ contract Instructor{
+     string fname;
+     uint age;
+     
+     function setinstructor(string memory _fname,uint _age) public {
+         require(_age > 18);
+         
+         fname=_fname;
+         age=_age;
+     }
+     
+     function getinstructor()view public returns (string memory,uint) {
+         
+         return (fname,age);
+     }
+     
+ }
