@@ -1,0 +1,32 @@
+ pragma solidity^0.6.6;
+ 
+ contract Instrutor {
+   
+   string fathername;
+   string mothername;
+   uint age;
+   
+ function setfather(string memory _fathername, uint _age) public {
+   require(_age >18);
+   fathername=_fathername;
+   age=_age;
+  }
+  
+  function setmothername(string memory _mothername, uint _age) public {
+   require(_age >18);
+   mothername=_mothername;
+   age=_age;
+   }
+ function getfather() view public returns(string memory,uint) {
+ 
+  return(fathername,age);
+  }
+  
+  function getmother() view public returns(string memory,uint) {
+ 
+  return(mothername,age);
+  }
+ 
+ }
+ 
+ 
