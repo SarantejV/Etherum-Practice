@@ -1,0 +1,31 @@
+pragma solidity^0.6.6;
+
+contract Election {
+    // Model a candidate
+    struct Candidate {
+        uint id;
+        string Name;
+        uint VoteCount;
+        
+    }
+//store account that have voted
+mapping (address => bool) public voters;
+// store Candidates
+// fetch Candidate
+mapping ( unit => Candidate) public Candidates;
+// Store candidate count
+uint public CandidatesCount;
+// vote event
+// event VoterEvent(
+    
+//     uint Index _Candidateid 
+//     );
+    function Election () public {
+        addcandidate ("candidate 1");
+        addcandidate ("candidate 2");
+    }
+     function addCandidate (string _name) private {
+        candidatesCount ++;
+        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+     }
+}
