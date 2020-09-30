@@ -1,0 +1,76 @@
+pragma solidity ^0.6.6;
+
+contract studentDetails{
+    
+    struct student{
+        
+        string name;
+        string degree;
+        uint year;
+        uint roll;
+        address accountaddress;
+            }
+            
+    address owner;
+    
+    mapping(address => student) students;
+    
+    address[] studentsAccts;
+    
+    constructor() public {
+        owner= msg.sender;
+    }
+    
+   modifier ifowner() {
+       require (owner == msg.sender);
+       _;
+   }
+   
+    function insertDetails(address _address, string memory _name, string memory _degree, uint _year, uint _roll) public ifowner{
+        
+        students[_address].accountaddress =_address;
+        students[_address].name =_name;
+        students[_address].degree =_degree;
+        students[_address].year =_year;
+        students[_address].roll=_roll;
+        
+        studentsAccts.push (_address);
+    }
+    
+    function upgradeDetails(address _address, string memory _name, string memory _degree, uint _year, uint _roll) public {
+        
+        students[_address].accountaddress =_address;
+        students[_address].name =_name;
+        students[_address].degree =_degree;
+        students[_address].year =_year;
+        students[_address].roll =_roll;
+    
+    }
+    function getstudents() view public returns(address[] memory){
+        
+        return studentsAccts;
+        
+    }
+    
+    function countstudents() view public returns (uint) {
+        
+        return studentsAccts.length;
+        
+    }
+    
+    function Validatestudent(address Valaddress) view public returns(bool) {
+        if ((students[Valaddress].accountaddress == Valaddress)){
+            
+            return true;
+        }
+            else{
+                return false;
+                
+            }
+            
+    }
+
+    }
+    
+    
+
