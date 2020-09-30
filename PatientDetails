@@ -1,0 +1,63 @@
+ pragma solidity ^0.6.6;
+contract Patientdetails{
+    struct patient{
+        string name;
+        string disease;
+        uint  id;
+        uint age;
+        address accountaddress;
+        }
+        address owner;
+        mapping(address => patient) patients;
+        address[] patientAccts;
+        constructor() public {
+            owner = msg.sender;
+        }
+    modifier ifowner(){
+        require(owner ==msg.sender);
+        _;
+            }
+    function insertdetails(address _address, string memory _name, string memory _disease, uint _id, uint _age)public ifowner{
+        
+        patients[_address].accountaddress =_address;
+        patients[_address].name =_name;
+        patients[_address].disease =_disease;
+        patients[_address].id = _id;
+        patients[_address].age = _age;
+        
+        patientAccts.push (_address);
+    }
+    function upgradeDetails(address _address, string memory _name, string memory _disease, uint _id, uint _age) public{
+        patients[_address].accountaddress=_address;
+        patients[_address].name=_name;
+        patients[_address].disease =_disease;
+        patients[_address].id= _id;
+        patients[_address].age= _age;
+        
+    }
+    function getpatients() view public returns(address[] memory){
+        return patientAccts;
+    }
+    
+    function getdetails(address _address) view public returns(string memory,uint){
+        return (patients[_address].name,patients[_address].id);
+    }
+    
+    function countpatients()view public returns(uint){
+        return patientAccts.length;
+            }
+    function validatepatient(address valaddress) view public returns (bool){
+        if ((patients [valaddress].accountaddress == valaddress)) {
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+        }
+    }
+
+
+
+
+
